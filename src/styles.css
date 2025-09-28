@@ -1,0 +1,14 @@
+/* Variables personalizadas de Bootstrap */
+:root {
+  --bs-primary: #198754;  /* Verde reciclaje */
+  --bs-success: #20c997;
+  --bs-font-sans-serif: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Importar Bootstrap */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Estilos personalizados */
+.btn-primary {
+  font-weight: 600;
+}/* You can add global styles to this file, and also import other style files */

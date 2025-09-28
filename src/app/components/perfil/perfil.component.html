@@ -1,0 +1,172 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      
+      <!-- Header -->
+      <div class="text-center mb-4">
+        <h1 class="h3 fw-bold text-success">
+          👤 {{ esEdicion ? 'Editar Mi Perfil' : 'Registrarme como Reciclador' }}
+        </h1>
+        <p class="text-muted">
+          {{ esEdicion ? 'Actualiza tu información' : 'Completa tus datos para que la comunidad te encuentre' }}
+        </p>
+      </div>
+
+      <!-- Formulario -->
+      <form [formGroup]="perfilForm" (ngSubmit)="guardarPerfil()">
+        
+        <!-- Credenciales PRIMERO -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-light">
+            <h5 class="card-title mb-0">🔐 Datos de Acceso</h5>
+          </div>
+          <div class="card-body">
+            <div class="alert alert-info mb-3">
+              <small>
+                <i class="bi bi-info-circle me-1"></i>
+                <strong>Para tus próximos accesos</strong> usarás el email y clave que ingreses aquí
+              </small>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email *</label>
+              <input type="email" class="form-control" id="email" formControlName="email"
+                     placeholder="tu.email@ejemplo.com"
+                     [class.is-invalid]="perfilForm.get('email')?.invalid && perfilForm.get('email')?.touched"
+                     [readonly]="esEdicion">
+              <div class="invalid-feedback">
+                Ingresa un email válido
+              </div>
+              <div *ngIf="esEdicion" class="form-text text-warning">
+                El email no se puede modificar
+              </div>
+            </div>
+
+            <!-- Clave -->
+            <div class="mb-3">
+              <label for="clave" class="form-label">
+                {{ esEdicion ? 'Nueva Clave' : 'Clave de Acceso *' }}
+              </label>
+              <input type="password" class="form-control" id="clave" formControlName="clave"
+                     [placeholder]="esEdicion ? 'Dejar vacío para mantener la actual' : 'Crea una clave segura'"
+                     [class.is-invalid]="!esEdicion && perfilForm.get('clave')?.invalid && perfilForm.get('clave')?.touched">
+              <div class="invalid-feedback" *ngIf="!esEdicion">
+                La clave es requerida (mínimo 4 caracteres)
+              </div>
+              <div class="form-text">
+                {{ esEdicion ? 'Solo completa si quieres cambiar tu clave' : 'Usarás esta clave para ingresar a tu cuenta' }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Información Personal -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-light">
+            <h5 class="card-title mb-0">👤 Información Personal</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Nombre -->
+              <div class="col-md-6 mb-3">
+                <label for="nombre" class="form-label">Nombre *</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre"
+                       [class.is-invalid]="perfilForm.get('nombre')?.invalid && perfilForm.get('nombre')?.touched">
+                <div class="invalid-feedback">
+                  El nombre es requerido
+                </div>
+              </div>
+
+              <!-- Apellido -->
+              <div class="col-md-6 mb-3">
+                <label for="apellido" class="form-label">Apellido *</label>
+                <input type="text" class="form-control" id="apellido" formControlName="apellido"
+                       [class.is-invalid]="perfilForm.get('apellido')?.invalid && perfilForm.get('apellido')?.touched">
+                <div class="invalid-feedback">
+                  El apellido es requerido
+                </div>
+              </div>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono *</label>
+              <input type="tel" class="form-control" id="telefono" formControlName="telefono" 
+                     placeholder="Ej: 912345678"
+                     [class.is-invalid]="perfilForm.get('telefono')?.invalid && perfilForm.get('telefono')?.touched">
+              <div class="invalid-feedback">
+                El teléfono es requerido
+              </div>
+            </div>
+
+            <!-- Instagram -->
+            <div class="mb-3">
+              <label for="instagram" class="form-label">Instagram (opcional)</label>
+              <input type="text" class="form-control" id="instagram" formControlName="instagram"
+                     placeholder="Ej: @tu_usuario">
+              <div class="form-text">
+                Las personas podrán contactarte por Instagram
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Servicio de Reciclaje -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-light">
+            <h5 class="card-title mb-0">♻️ Mi Servicio de Reciclaje</h5>
+          </div>
+          <div class="card-body">
+            <!-- Materiales que Recicla -->
+            <div class="mb-3">
+              <label for="materiales" class="form-label">¿Qué materiales reciclas? *</label>
+              <textarea class="form-control" id="materiales" formControlName="materiales" rows="3"
+                        placeholder="Ej: Cartones, plásticos PET, latas de aluminio, vidrio, electrónicos..."
+                        [class.is-invalid]="perfilForm.get('materiales')?.invalid && perfilForm.get('materiales')?.touched"></textarea>
+              <div class="form-text">
+                Describe los materiales que aceptas. Sepáralos con comas.
+              </div>
+              <div class="invalid-feedback">
+                Es importante que especifiques qué materiales reciclas
+              </div>
+            </div>
+
+            <!-- Retiro a Domicilio -->
+            <div class="mb-3">
+              <label class="form-label">¿Ofreces retiro a domicilio? *</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="retiroSi" 
+                         value="true" formControlName="retiroDomicilio">
+                  <label class="form-check-label" for="retiroSi">
+                    <i class="bi bi-truck me-1"></i>Sí, hago retiro a domicilio
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="retiroNo" 
+                         value="false" formControlName="retiroDomicilio">
+                  <label class="form-check-label" for="retiroNo">
+                    <i class="bi bi-house me-1"></i>No, recibo en mi ubicación
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button type="button" class="btn btn-outline-secondary me-md-2" routerLink="/">
+            <i class="bi bi-arrow-left me-1"></i>Cancelar
+          </button>
+          <button type="submit" class="btn btn-success" [disabled]="perfilForm.invalid">
+            <i class="bi me-1" [class.bi-check]="esEdicion" [class.bi-person-plus]="!esEdicion"></i>
+            {{ esEdicion ? 'Guardar Cambios' : 'Completar Registro' }}
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
