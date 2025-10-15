@@ -35,3 +35,51 @@
   color: white;
   transform: translateY(-1px);
 }
+
+/* Estilos para la información de contacto */
+.contact-info {
+  margin-bottom: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Asegurar que las tarjetas tengan altura consistente */
+.card {
+  min-height: 350px;
+}
+
+/* Estilos para botones de Instagram */
+.btn-instagram {
+  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+  border-color: transparent;
+  color: white;
+}
+
+.btn-instagram:hover {
+  background: linear-gradient(45deg, #374BC7, #4A44B8, #723299, #A82A71, #C2275B, #D41A1A);
+  border-color: transparent;
+  color: white;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  background-image: 
+    /* Fondo con opacidad reducida */
+    linear-gradient(rgba(245, 247, 250, 0.7), rgba(245, 247, 250, 0.7)),
+    /* Tu imagen con mayor espaciado */
+    url(../../../assets/bolsa-ecologica.png);
+  
+  background-size: 150px; /* Aumenté el tamaño para mayor separación */
+  background-repeat: space; /* Esto distribuirá las imágenes uniformemente */
+  background-position: center;
+  background-attachment: fixed;
+}

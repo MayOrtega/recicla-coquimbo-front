@@ -8,13 +8,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListadoComponent } from './components/listado/listado.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { LoginComponent } from './components/login/login.component';
+import { VistaPreviaComponent } from './components/vista-previa/vista-previa.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListadoComponent,
-    PerfilComponent
+    PerfilComponent,
+    LoginComponent,
+    VistaPreviaComponent
   ],
   imports: [
     BrowserModule,

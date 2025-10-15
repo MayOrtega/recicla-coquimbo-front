@@ -1,0 +1,135 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      
+      <!-- Header -->
+      <div class="text-center mb-4">
+        <h1 class="h3 fw-bold text-success">
+          👁️ Vista Previa del Perfil
+        </h1>
+        <p class="text-muted">
+          Revisa tu información antes de confirmar
+        </p>
+      </div>
+
+      <!-- Mensaje si no hay datos -->
+      <div *ngIf="!reciclador" class="alert alert-warning text-center">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        No se encontraron datos del perfil.
+      </div>
+
+      <!-- Vista Previa del Formulario -->
+      <div *ngIf="reciclador">
+        <form [formGroup]="perfilForm">
+          
+          <!-- Credenciales -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light">
+              <h5 class="card-title mb-0">🔐 Datos de Acceso</h5>
+            </div>
+            <div class="card-body">
+              <!-- Email -->
+              <div class="mb-3">
+                <label class="form-label fw-bold">Email</label>
+                <div class="form-control-plaintext">
+                  {{ perfilForm.get('email')?.value }}
+                </div>
+              </div>
+
+              <!-- Clave -->
+              <div class="mb-3">
+                <label class="form-label fw-bold">Clave</label>
+                <div class="form-control-plaintext">
+                  ********
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Información Personal -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light">
+              <h5 class="card-title mb-0">👤 Información Personal</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label fw-bold">Nombre</label>
+                  <div class="form-control-plaintext">
+                    {{ perfilForm.get('nombre')?.value }}
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label fw-bold">Apellido</label>
+                  <div class="form-control-plaintext">
+                    {{ perfilForm.get('apellido')?.value }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Teléfono</label>
+                <div class="form-control-plaintext">
+                  {{ perfilForm.get('telefono')?.value }}
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Instagram</label>
+                <div class="form-control-plaintext">
+                  {{ perfilForm.get('instagram')?.value || 'No especificado' }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Servicio de Reciclaje -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light">
+              <h5 class="card-title mb-0">♻️ Mi Servicio de Reciclaje</h5>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label class="form-label fw-bold">Materiales que Reciclo</label>
+                <div class="form-control-plaintext">
+                  {{ perfilForm.get('materiales')?.value }}
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Retiro a Domicilio</label>
+                <div class="form-control-plaintext">
+                  <span [class.text-success]="perfilForm.get('retiroDomicilio')?.value"
+                        [class.text-secondary]="!perfilForm.get('retiroDomicilio')?.value">
+                    <i class="bi me-1" 
+                       [class.bi-truck]="perfilForm.get('retiroDomicilio')?.value"
+                       [class.bi-house]="!perfilForm.get('retiroDomicilio')?.value"></i>
+                    {{ perfilForm.get('retiroDomicilio')?.value ? 'Sí, hago retiro a domicilio' : 'No, recibo en mi ubicación' }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botones de Acción -->
+          <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+            <button type="button" class="btn btn-outline-secondary" (click)="volverAHome()">
+              <i class="bi bi-arrow-left me-1"></i>Volver al Home
+            </button>
+            
+            <div>
+              <button type="button" class="btn btn-warning me-2" (click)="editarDeNuevo()">
+                <i class="bi bi-pencil me-1"></i>Editar de Nuevo
+              </button>
+              <button type="button" class="btn btn-success" (click)="confirmarPerfil()">
+                <i class="bi bi-check-circle me-1"></i>Confirmar Perfil
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

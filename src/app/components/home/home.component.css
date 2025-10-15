@@ -1,10 +1,99 @@
+
+/* Tipografía */
+.display-4 {
+  letter-spacing: -0.5px;
+}
+
+/* Botones */
+.btn-success {
+  background-color: #198754;
+  border-color: #198754;
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: #157347;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(25, 135, 84, 0.2);
+}
+
+.btn-warning {
+  background-color: #fd7e14;
+  border-color: #fd7e14;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+  background-color: #e66a0a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(253, 126, 20, 0.2);
+}
+
+/* Contenedor principal */
+.main-container {
+  max-width: 800px;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Iconos */
+.bi {
+  font-size: 1.5rem;
+}
+
+/* Footer */
+.footer-text {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* Base con textura */
 .min-vh-100 {
   min-height: 100vh;
+  background-color: #f5f7fa;
+  background-image: 
+    /* Fondo con opacidad reducida */
+    linear-gradient(rgba(245, 247, 250, 0.7), rgba(245, 247, 250, 0.7)),
+    /* Tu imagen con mayor espaciado */
+    url(../../../assets/bolsa-ecologica.png);
+  
+  background-size: 150px; /* Aumenté el tamaño para mayor separación */
+  background-repeat: space; /* Esto distribuirá las imágenes uniformemente */
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Contenedor principal */
+.main-container {
+  max-width: 800px;
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Botones con igual tamaño */
+.action-btn {
+  min-height: 80px; /* Altura fija para ambos botones */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  transition: all 0.3s ease;
 }
 
 .btn-success {
   background-color: #198754;
   border-color: #198754;
+}
+
+.btn-success:hover {
+  background-color: #157347;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 135, 84, 0.25);
 }
 
 .btn-warning {
@@ -15,6 +104,20 @@
 
 .btn-warning:hover {
   background-color: #e66a0a;
-  border-color: #e66a0a;
-  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(253, 126, 20, 0.25);
+}
+
+/* Contenedor de botones */
+.btn-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-wrapper {
+  flex: 1;
+  min-width: 280px; /* Ancho mínimo igual para ambos */
+  max-width: 320px;
 }

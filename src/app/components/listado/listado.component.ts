@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecicladorService } from '../../services/reciclador.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado',
@@ -39,7 +40,9 @@ export class ListadoComponent implements OnInit {
     'papel': ['papel', 'papeles', 'periódico', 'revista', 'diario']
   };
 
-  constructor(private recicladorService: RecicladorService) {}
+  constructor(private recicladorService: RecicladorService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.cargarRecicladores();
@@ -215,5 +218,9 @@ export class ListadoComponent implements OnInit {
 
   get hayFiltrosActivos(): boolean {
     return !!this.terminoBusqueda || !!this.materialFiltro;
+  }
+
+   volverAlHome() {
+    this.router.navigate(['/']);
   }
 }
