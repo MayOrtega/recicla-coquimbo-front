@@ -9,7 +9,8 @@ export class RecicladorService {
   private recicladorData: any;
 
   // URL del backend en Fly.io
-  private apiUrl = 'https://tu-app.fly.dev/api'; 
+  private apiUrl = 'https://reciclacoquimbo-back-purple-leaf-2895.fly.dev'  
+; 
 
   constructor(private http: HttpClient) { }
 
