@@ -8,9 +8,8 @@ import { Observable } from 'rxjs';
 export class RecicladorService {
   private recicladorData: any;
 
-  // URL del backend en Fly.io
-  private apiUrl = 'https://reciclacoquimbo-back-purple-leaf-2895.fly.dev'  
-; 
+  // URL del backend local
+  private apiUrl = 'http://localhost:5000/api';
 
   constructor(private http: HttpClient) { }
 
@@ -74,6 +73,15 @@ export class RecicladorService {
     return this.http.post<any>(`${this.apiUrl}/auth/login`, credenciales);
   }
 
+  eliminarCuenta(id: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    return this.http.delete<any>(`${this.apiUrl}/recicladores/${id}`, { headers });
+  }
+
   // =============================================
   // MÉTODOS AUXILIARES
   // =============================================
@@ -101,7 +109,7 @@ export class RecicladorService {
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       return {
-        id: payload.sub,
+        id: payload.id || payload.sub,
         email: payload.email,
       };
     } catch (error) {

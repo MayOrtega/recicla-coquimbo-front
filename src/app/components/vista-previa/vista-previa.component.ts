@@ -135,11 +135,6 @@ export class VistaPreviaComponent implements OnInit {
     return retiro ? 'text-success' : 'text-secondary';
   }
 
-  // Método auxiliar para mostrar/ocultar secciones si no hay datos
-  tieneDatos(): boolean {
-    return this.reciclador && !this.cargando;
-  }
-
   // Lifecycle hook para limpiar datos si el componente se destruye
   ngOnDestroy() {
     // Opcional: Limpiar datos si quieres que se remueva al salir

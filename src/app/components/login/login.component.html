@@ -1,4 +1,5 @@
-<div class="container mt-5">
+<div class="bg-pattern-subtle py-5">
+  <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4">
       
@@ -13,9 +14,9 @@
           </div>
 
           <!-- Mensajes -->
-          <div *ngIf="cargando" class="alert alert-info text-center">
-            <div class="spinner-border spinner-border-sm me-2" role="status"></div>
-            Iniciando sesión...
+          <div *ngIf="cargando" class="text-center my-4">
+            <i class="bi bi-recycle spinner-recycle mb-2" style="font-size: 2rem;"></i>
+            <h6 class="text-success fw-bold">Iniciando sesión...</h6>
           </div>
 
           <div *ngIf="mensaje" 
@@ -84,4 +85,5 @@
 
     </div>
   </div>
+</div>
 </div>

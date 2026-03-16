@@ -11,4 +11,32 @@
 /* Estilos personalizados */
 .btn-primary {
   font-weight: 600;
-}/* You can add global styles to this file, and also import other style files */
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Fondo sutil con patrón de bolsa ecológica */
+.bg-pattern-subtle {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  background-image: 
+    linear-gradient(rgba(245, 247, 250, 0.9), rgba(245, 247, 250, 0.9)),
+    url('./assets/bolsa-ecologica.png');
+  background-size: 150px;
+  background-repeat: space;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Spinner de reciclaje animado */
+.spinner-recycle {
+  display: inline-block;
+  animation: spin 2s linear infinite;
+  color: var(--bs-primary);
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

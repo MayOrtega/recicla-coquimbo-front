@@ -1,12 +1,14 @@
-<div class="container mt-4">
+<div class="bg-pattern-subtle py-4">
+  <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       
 
       <!-- Loading -->
-      <div *ngIf="cargando" class="alert alert-info text-center">
-        <div class="spinner-border spinner-border-sm me-2" role="status"></div>
-        {{ esEdicion ? 'Cargando tu perfil...' : 'Procesando...' }}
+      <div *ngIf="cargando" class="text-center my-5 p-4 bg-white rounded shadow-sm">
+        <i class="bi bi-recycle spinner-recycle mb-3" style="font-size: 3rem;"></i>
+        <h5 class="text-success fw-bold">{{ esEdicion ? 'Cargando tu perfil...' : 'Procesando...' }}</h5>
+        <p class="text-muted small">Por favor, espera un momento</p>
       </div>
 
       <!-- Mensajes de éxito/error -->
@@ -188,10 +190,16 @@
           </div>
 
           <!-- Botones de Acción -->
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="button" class="btn btn-outline-secondary me-md-2" routerLink="/">
-              <i class="bi bi-arrow-left me-1"></i>Cancelar
-            </button>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+            <div class="d-grid gap-2 d-md-flex">
+              <button type="button" class="btn btn-outline-secondary me-md-2" routerLink="/">
+                <i class="bi bi-arrow-left me-1"></i>Cancelar
+              </button>
+              <button *ngIf="esEdicion" type="button" class="btn btn-outline-danger" (click)="eliminarCuenta()" [disabled]="cargando">
+                <i class="bi bi-trash me-1"></i>Eliminar Mi Cuenta
+              </button>
+            </div>
+            
             <button type="submit" class="btn btn-success" [disabled]="perfilForm.invalid || cargando">
               <i class="bi me-1" [class.bi-check]="esEdicion" [class.bi-person-plus]="!esEdicion"></i>
               {{ cargando ? 'Procesando...' : (esEdicion ? 'Guardar Cambios' : 'Completar Registro') }}

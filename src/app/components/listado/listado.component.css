@@ -52,7 +52,7 @@
 }
 
 /* Asegurar que las tarjetas tengan altura consistente */
-.card {
+.card.hover-shadow {
   min-height: 350px;
 }
 

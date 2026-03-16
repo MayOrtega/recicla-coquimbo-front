@@ -203,6 +203,42 @@ private marcarCamposComoTouched() {
 }
 
 
+  eliminarCuenta() {
+    if (!this.esEdicion) return; // Por seguridad
+
+    const confirmar = window.confirm(
+      '¿Estás seguro de que quieres eliminar tu cuenta?\nEsta acción es irreversible y tu perfil ya no aparecerá en el listado.'
+    );
+    
+    if (!confirmar) return;
+
+    this.cargando = true;
+    
+    // Extraer el ID desde el token
+    const usuario = this.recicladorService.getUsuarioFromToken();
+    const idUsuario = usuario?.id;
+
+    if (!idUsuario) {
+      this.cargando = false;
+      this.mostrarMensaje('Error de sesión. Intenta iniciar sesión nuevamente.', 'error');
+      return;
+    }
+
+    this.recicladorService.eliminarCuenta(idUsuario).subscribe({
+      next: (response) => {
+        this.cargando = false;
+        alert('Tu cuenta ha sido eliminada exitosamente. ¡Gracias por tu colaboración!');
+        this.recicladorService.logout();
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        this.cargando = false;
+        console.error('Error eliminando cuenta:', error);
+        this.mostrarMensaje('Hubo un error al eliminar tu cuenta.', 'error');
+      }
+    });
+  }
+
   mostrarMensaje(mensaje: string, tipo: 'success' | 'error') {
     this.mensaje = mensaje;
     this.tipoMensaje = tipo;
